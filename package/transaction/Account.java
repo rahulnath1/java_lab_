@@ -1,18 +1,38 @@
 
-package reports;
+package transaction;
 
-import transaction.Account;
+public class Account {
+    int accountNumber;
+    double balance;
 
-public class TransactionReport {
+    public Account(int accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
 
-    public void generateReport(Account a) {
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance = balance + amount;
+            System.out.println("Amount deposited: Rs. " + amount);
+        } else {
+            System.out.println("Invalid deposit amount");
+        }
+    }
 
-        System.out.println("\n----- Transaction Report -----");
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance = balance - amount;
+            System.out.println("Amount withdrawn: Rs. " + amount);
+        } else {
+            System.out.println("Insufficient balance or invalid amount");
+        }
+    }
 
-        System.out.println("Account Number: " + a.getAccountNumber());
+    public double getBalance() {
+        return balance;
+    }
 
-        System.out.println("Available Balance: Rs. " + a.getBalance());
-
-        System.out.println("------------------------------");
+    public int getAccountNumber() {
+        return accountNumber;
     }
 }
